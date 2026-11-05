@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Profil Siswa</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#040a18;--panel:rgba(14,28,58,.62);--line:rgba(70,150,255,.28);--ink:#eaf3ff;--muted:#8fa8cc;--neon:#18d4ff;--electric:#3d7bff;--glow:0 0 18px rgba(24,212,255,.45);
+--display:'Sora','Trebuchet MS',system-ui,sans-serif;--body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;color:var(--ink);font:400 1.0625rem/1.7 var(--body);min-height:100vh;
+background:
+ radial-gradient(900px 500px at 85% -5%,rgba(61,123,255,.35),transparent 60%),
+ radial-gradient(700px 480px at -5% 30%,rgba(24,212,255,.16),transparent 60%),
+ linear-gradient(rgba(70,150,255,.06) 1px,transparent 1px) 0 0/44px 44px,
+ linear-gradient(90deg,rgba(70,150,255,.06) 1px,transparent 1px) 0 0/44px 44px,
+ var(--bg);background-attachment:fixed}
+:focus-visible{outline:3px solid var(--neon);outline-offset:3px;border-radius:6px}
+.wrap{max-width:860px;margin:0 auto;padding:34px 20px 56px}
+.glass{background:var(--panel);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 50px -28px rgba(24,212,255,.5),inset 0 1px 0 rgba(255,255,255,.06)}
+.hero{position:relative;padding:34px 30px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,transparent,var(--neon),var(--electric),transparent)}
+.hero::after{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-140px;border-radius:50%;background:radial-gradient(circle,rgba(24,212,255,.28),transparent 65%);animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.25);opacity:.6}}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:700;color:var(--neon);border:1px solid var(--line);padding:4px 14px;border-radius:999px;background:rgba(24,212,255,.08)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:var(--glow)}
+.who{display:flex;gap:28px;align-items:center;margin-top:22px;position:relative;z-index:1;flex-wrap:wrap}
+.photo{width:132px;height:132px;border-radius:50%;padding:4px;background:conic-gradient(from 200deg,var(--neon),var(--electric),var(--neon));box-shadow:var(--glow);flex:none}
+.photo>div{width:100%;height:100%;border-radius:50%;background:#0a1630;display:grid;place-items:center;font:800 2.6rem var(--display);color:var(--neon);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+h1{font:800 clamp(2rem,6vw,3.2rem)/1.08 var(--display);letter-spacing:-.02em;margin:0 0 10px;text-shadow:0 0 28px rgba(24,212,255,.35)}
+.info{display:flex;flex-wrap:wrap;gap:8px}
+.info span{background:rgba(61,123,255,.14);border:1px solid var(--line);border-radius:10px;padding:3px 12px;font-size:.95rem;color:#cfe0ff}
+section{margin-top:34px}
+h2{font:700 1.35rem var(--display);margin:0 0 16px;display:flex;align-items:center;gap:12px}
+h2::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+h2::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--neon);box-shadow:var(--glow);transform:rotate(45deg)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
+.chips li{padding:7px 18px;border-radius:12px;font-weight:700;background:linear-gradient(135deg,rgba(24,212,255,.14),rgba(61,123,255,.14));border:1px solid var(--line);color:#dff4ff}
+.chips li:hover{border-color:var(--neon);box-shadow:var(--glow)}
+.tl{list-style:none;margin:0;padding:0 0 0 26px;position:relative}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--neon),var(--electric),transparent)}
+.tl li{position:relative;padding:16px 20px;margin-bottom:14px}
+.tl li::before{content:"";position:absolute;left:-26px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--neon);box-shadow:var(--glow)}
+.tl strong{display:block;font:700 1.1rem var(--display)}
+.tl em{font-style:normal;color:var(--neon);font-size:.9rem;font-weight:700}
+.tl p{margin:4px 0 0;color:var(--muted)}
+.dream{padding:28px;text-align:center;background:linear-gradient(135deg,rgba(24,212,255,.16),rgba(61,123,255,.2))}
+.dream b{display:block;font:800 clamp(1.4rem,4vw,2rem)/1.25 var(--display);color:#fff;text-shadow:var(--glow)}
+.dream p{margin:10px auto 0;max-width:52ch;color:#bcd3f5}
+.note{padding:26px 28px;border-left:4px solid var(--neon);border-radius:6px 20px 20px 6px}
+.note p{margin:0 0 8px;font-size:1.1rem}
+.note .from{text-align:right;color:var(--neon);font-weight:700;margin:14px 0 0}
+footer{text-align:center;color:var(--muted);font-size:.9rem;margin-top:46px}
+@media (max-width:560px){.hero{padding:26px 20px}.who{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:reduce){.hero::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="glass hero">
+    <span class="badge"><i></i><span id="sekolah"></span></span>
+    <div class="who">
+      <div class="photo"><div id="photo"></div></div>
+      <div>
+        <h1 id="nama"></h1>
+        <div class="info"><span id="ttl"></span><span id="kelas"></span></div>
+      </div>
+    </div>
+  </header>
+  <section><h2>Skill</h2><ul class="chips" id="skill"></ul></section>
+  <section><h2>Pengalaman</h2><ul class="tl" id="pengalaman"></ul></section>
+  <section><h2>Cita-cita</h2><div class="glass dream" id="cita"></div></section>
+  <section><h2>Pesan untuk diri sendiri</h2><div class="glass note" id="pesan"></div></section>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+/* ================================================================
+   EDIT DI SINI: ganti isi di bawah dengan data kamu.
+   Ubah hanya teks di dalam tanda kutip " ". Jangan hapus tanda
+   kutip, koma di ujung baris, atau kurung { } [ ].
+   Simpan dengan Ctrl + S, lalu refresh halaman di browser.
+   ================================================================ */
+const DATA = {
+  nama: "DESTRI ADELIA",
+  tanggalLahir : "02 DESEMBER 2009",       // format: TAHUN-BULAN-TANGGAL (contoh: 17 Mei 2008)
+  tempatLahir: "BANJAR TENGAH",
+  sekolah: "SMK SWASTA SUPIAN MEMBANGUN SILANGKITANG",
+  kelas: "XI RPL",
+  foto: "",                          // isi nama file foto, misalnya "foto.jpg". Kosong = tampil inisial.
+
+  skill: ["MENARI & BERMAIN ALAT MUSIK",],
+
+  pengalaman: [
+    { judul: "Paskibra", waktu: "2025", ket: "Anggota 45" },
+    { judul: "PKL (PRAKTEK KERJA LAPANGAN)", waktu: "2027", ket: "PT. BINANGA MANDALA" },
+    { judul: "MENARI", waktu: "2025", ket: "ANTAR SEKOLAH" }
+  ],
+
+  citaCita: "Owner Butik", 
+  alasanCita: "Karena hobi saya",
+
+  pesan: [
+    " Hiraukan semua perkataan orang.  ",
+    "."
+  ],
+  pengirim: " DESTRI 2026, hari ini"
+};
+/* ================== AKHIR BAGIAN EDIT ================== */
+
+const $ = id => document.getElementById(id);
+function el(tag, text, cls){ const e = document.createElement(tag); if (text) e.textContent = text; if (cls) e.className = cls; return e; }
+
+document.title = "Profil " + DATA.nama;
+$('nama').textContent = DATA.nama;
+$('sekolah').textContent = DATA.sekolah;
+$('kelas').textContent = DATA.kelas;
+$('footer').textContent = "Dibuat oleh " + DATA.nama;
+
+const ini = DATA.nama.split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0].toUpperCase()).join("");
+if (DATA.foto) { const im = document.createElement('img'); im.src = DATA.foto; im.alt = "Foto " + DATA.nama; im.onerror = () => { im.remove(); $('photo').textContent = ini; }; $('photo').append(im); }
+else $('photo').textContent = ini;
+
+const bulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+const p = DATA.tanggalLahir.split("-").map(Number);
+if (p.length === 3 && p.every(n => !isNaN(n))) {
+  const now = new Date();
+  let umur = now.getFullYear() - p[0];
+  if (now.getMonth() + 1 < p[1] || (now.getMonth() + 1 === p[1] && now.getDate() < p[2])) umur--;
+  $('ttl').textContent = DATA.tempatLahir + ", " + p[2] + " " + bulan[p[1]-1] + " " + p[0] + " (" + umur + " tahun)";
+} else { $('ttl').textContent = DATA.tempatLahir; }
+
+DATA.skill.forEach(s => $('skill').append(el('li', s)));
+DATA.pengalaman.forEach(x => {
+  const li = el('li', "", "glass");
+  li.append(el('em', x.waktu), el('strong', x.judul));
+  if (x.ket) li.append(el('p', x.ket));
+  $('pengalaman').append(li);
+});
+$('cita').append(el('b', DATA.citaCita));
+if (DATA.alasanCita) $('cita').append(el('p', DATA.alasanCita));
+DATA.pesan.forEach(t => $('pesan').append(el('p', t)));
+$('pesan').append(el('p', "- " + DATA.pengirim, 'from'));
+</script>
+</body>
+</html>
